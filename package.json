@@ -1,0 +1,19 @@
+{
+  "name": "file-system-check",
+  "version": "1.0.0",
+  "description": "Utility to check if file-system has gone into read-only state, notify by email and then fix the error.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shenoyranjith/file-system-check.git"
+  },
+  "author": "Ranjith Shenoy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shenoyranjith/file-system-check/issues"
+  },
+  "homepage": "https://github.com/shenoyranjith/file-system-check#readme"
+}
