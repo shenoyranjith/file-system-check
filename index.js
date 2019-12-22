@@ -10,10 +10,10 @@ emailBody += result.stdout;
 emailBody += "\n";
 
 if (result.code == 0) {
-  if (result.stdout.includes("sdb1")) {
+  if (result.stdout.includes("<PARTITON>")) {
     emailSubject = "[File-System-Check] Fixed File System";
-    console.log("WTF!? Going to have to fix this.");
-    console.log("Sending email...");
+    console.log("WTF!? Going to have to fix this...");
+    fixFileSystem();
   } else {
     emailSubject = "[File-System-Check] No Issues Found";
   }
@@ -21,6 +21,14 @@ if (result.code == 0) {
   emailSubject = "[File-System-Check] Something went wrong";
 }
 
-sendMail(emailSubject, emailBody)
-  .then(result => console.log(result))
-  .catch(error => console.log(error));
+sendMail(emailSubject, emailBody);
+console.log("Email sent...");
+
+let fixFileSystem = async function() {
+  let result = shell.exec("fsck -y <PARTITON>");
+  emailBody += result.stdout;
+  await sendMail(emailSubject, emailBody);
+  console.log("Email sent...");
+  console.log("Rebooting...");
+  shell.exec("reboot now");
+};

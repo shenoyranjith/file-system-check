@@ -1,10 +1,12 @@
 // Load the AWS SDK for Node.js
 let AWS = require("aws-sdk");
 // Get and set AWS credentials from the shared file
-let credentials = new AWS.SharedIniFileCredentials({ profile: "" });
+let credentials = new AWS.SharedIniFileCredentials({
+  profile: "<AWS_PROFILE>"
+});
 AWS.config.credentials = credentials;
 // Set the region
-AWS.config.update({ region: "" });
+AWS.config.update({ region: "<REGION>" });
 
 const sendMail = function(subjectText, bodyText) {
   // Create sendEmail params
@@ -12,7 +14,7 @@ const sendMail = function(subjectText, bodyText) {
     Destination: {
       /* required */
       ToAddresses: [
-        ""
+        "<TO_ADDRESSES>"
         /* more items */
       ]
     },
@@ -30,7 +32,7 @@ const sendMail = function(subjectText, bodyText) {
         Data: subjectText
       }
     },
-    Source: "" /* required */
+    Source: "<FROM_ADDRESSES>" /* required */
   };
 
   // Create the promise and SES service object
