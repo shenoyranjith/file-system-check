@@ -21,8 +21,7 @@ if (result.code == 0) {
   emailSubject = "[File-System-Check] Something went wrong";
 }
 
-sendMail(emailSubject, emailBody);
-console.log("Email sent...");
+sendMail(emailSubject, emailBody).then(() => console.log("Email sent..."));
 
 let fixFileSystem = async function() {
   let result = shell.exec("fsck -y <PARTITON>");
