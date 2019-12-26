@@ -1,6 +1,15 @@
 let shell = require("shelljs");
 let { sendMail } = require("./email");
 
+let fixFileSystem = async function () {
+  let result = shell.exec("fsck -y <PARTITON>");
+  emailBody += result.stdout;
+  await sendMail(emailSubject, emailBody);
+  console.log("Email sent...");
+  console.log("Rebooting...");
+  shell.exec("reboot now");
+};
+
 let emailBody = "";
 let emailSubject = "";
 
@@ -22,12 +31,3 @@ if (result.code == 0) {
 }
 
 sendMail(emailSubject, emailBody).then(() => console.log("Email sent..."));
-
-let fixFileSystem = async function() {
-  let result = shell.exec("fsck -y <PARTITON>");
-  emailBody += result.stdout;
-  await sendMail(emailSubject, emailBody);
-  console.log("Email sent...");
-  console.log("Rebooting...");
-  shell.exec("reboot now");
-};
