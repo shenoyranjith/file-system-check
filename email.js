@@ -2,13 +2,14 @@
 let AWS = require("aws-sdk");
 // Get and set AWS credentials from the shared file
 let credentials = new AWS.SharedIniFileCredentials({
-  profile: "<AWS_PROFILE>"
+  profile: "<AWS_PROFILE>",
+  filename: "<FILE_PATH>"
 });
 AWS.config.credentials = credentials;
 // Set the region
 AWS.config.update({ region: "<REGION>" });
 
-const sendMail = function(subjectText, bodyText) {
+const sendMail = function (subjectText, bodyText) {
   // Create sendEmail params
   var params = {
     Destination: {
