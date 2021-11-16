@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/shenoyranjith/file-system-check#readme",
   "dependencies": {
-    "aws-sdk": "^2.595.0",
+    "aws-sdk": "^2.814.0",
     "shelljs": "^0.8.3"
   }
 }
